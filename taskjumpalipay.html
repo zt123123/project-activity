@@ -9,7 +9,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="Cache" content="no-cache">
-    <title>邀请再加码</title>
+    <title>支付宝红包</title>
     <script>
         (function (doc, win) {
             var docEl = doc.documentElement,//设备宽度
@@ -110,31 +110,12 @@
             font-size: 100px;
         }
     }
-    *{
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-    html{
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-        /* 解决IOS默认滑动很卡的情况 */
-        -webkit-overflow-scrolling : touch;
-        -webkit-touch-callout:none;
-    }
-    input[type="submit"], input[type="reset"], input[type="button"], input {
-        resize: none;
-        border: none;
-    }
-    input,
-    button {
-        -webkit-appearance: none;
-        border-radius: 0;
-    }
+
     body {
-        overflow: hidden;
         font-size: 14px;
         margin: 0;
         padding: 0;
-        background: #ca47e8 url("./img/bj2.png") left top no-repeat;
+        background: #811eeb url("./img/bj2.png") left top no-repeat;
         background-size: 100%;
     }
 
@@ -152,36 +133,18 @@
     .container div {
         margin: 0 auto;
     }
-
     .container .bonus {
-        margin-top: 0.37rem;
-        width: 5.97rem;
-        height: 3.56rem;
-        margin-left: 0.94rem;
-        margin-right: 0.60rem;
-        background: url("./img/bonus.png") no-repeat;
+        margin-top: 1.18rem;
+        width: 6.67rem;
+        height: 4.32rem;
+        background: url("./img/bonusalipay.png") no-repeat;
         background-size: contain;
     }
-
-    .container .activity-time {
-        text-align: center;
-        width: 4.17rem;
-        height: 0.51rem;
-        line-height: 0.51rem;
-        background: rgba(60, 0, 122, 1);
-        border-radius: 0.25rem;
-
-        margin-top: 0.63rem;
-        font-size: 0.25rem;
-        font-weight: 300;
-        color: rgba(253, 250, 255, 1);
-    }
-
     .container .activity-rule {
         text-align: center;
         margin-top: 0.38rem;
         width: 6.67rem;
-        height: 4.00rem;
+        height: 3.00rem;
         padding-top: 0.35rem;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
@@ -243,7 +206,7 @@
 
     .container .wx-btn {
         margin-top: 0.57rem;
-        /*margin-bottom: 1.05rem;*/
+        margin-bottom: 1.05rem;
         width: 5.28rem;
         height: 0.90rem;
         line-height: 0.90rem;
@@ -260,19 +223,16 @@
 
 <body>
     <div class="container">
-        <div class="bonus"></div>
-        <div class="activity-time">
-            活动时间：即日起 - 2018.12.15
-        </div>
-        <div class="activity-rule">
-            <div class="title">奖励规则</div>
+			<div class="bonus"></div>
+            <div class="activity-rule">
+            <div class="title">支付宝红包免费领</div>
             <ol class="rule">
-                <li>奖励要求：活动期间，收徒>15人，且每个徒弟贡献超过5万金币，即可在收徒10元奖励基础上，额外获得3元现金/人。</li>
-                <li>奖金发放方式：活动结束后3日内，请直接联系客服微信领取现金奖励。</li>
-                <li>若被发现有作弊行为，平台有权取消奖励。</li>
+                <li>点击复制支付宝搜索码并前往支付宝</li>
+                <li>点击搜索框，粘贴【搜索码】搜索</li>
+				<li>选择【天天领红包】，最高可领99元！</li>
             </ol>
         </div>
-        <div class="wx-btn" id="copyCode" data-clipboard-action="copy" data-clipboard-target="span">复制客服微信:<span id="code">better0168</span></div>
+        <div class="wx-btn" id="copyCode" data-clipboard-action="copy" data-clipboard-target="span">点击复制搜索码:<span id="code">4210100</span></div>
     </div>
 
     <script>
@@ -299,7 +259,7 @@
         clipboard.on('success', function (e) {
             console.log(e.text);
             showToast("复制成功,邀请码为：" + e.text);
-            window.location.href="weixin://";
+            window.location.href="alipays://platformapi/startapp?appId=20001003&launchSource=navbar&actionSrc=hometab";
         });
         clipboard.on('error', function (e) {
             console.log(e);
@@ -326,10 +286,14 @@
             if(isiOS&&flag){
                 console.log(code.innerText);
                 window.webkit.messageHandlers.copyText && window.webkit.messageHandlers.copyText.postMessage(code.innerText);
-                window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.weixin.home);
+                window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.alipay.home);
             }
         })
+
     </script>
+	<div style="display:none"> 
+	<script src="https://s96.cnzz.com/z_stat.php?id=1275554278&web_id=1275554278" language="JavaScript"></script>
+	</div>
 </body>
 
 </html>

@@ -110,31 +110,12 @@
             font-size: 100px;
         }
     }
-    *{
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-    html{
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-        /* 解决IOS默认滑动很卡的情况 */
-        -webkit-overflow-scrolling : touch;
-        -webkit-touch-callout:none;
-    }
-    input[type="submit"], input[type="reset"], input[type="button"], input {
-        resize: none;
-        border: none;
-    }
-    input,
-    button {
-        -webkit-appearance: none;
-        border-radius: 0;
-    }
+
     body {
-        overflow: hidden;
         font-size: 14px;
         margin: 0;
         padding: 0;
-        background: #ca47e8 url("./img/bj2.png") left top no-repeat;
+        background: #811eeb url("./img/bj2.png") left top no-repeat;
         background-size: 100%;
     }
 
@@ -153,29 +134,8 @@
         margin: 0 auto;
     }
 
-    .container .bonus {
-        margin-top: 0.37rem;
-        width: 5.97rem;
-        height: 3.56rem;
-        margin-left: 0.94rem;
-        margin-right: 0.60rem;
-        background: url("./img/bonus.png") no-repeat;
-        background-size: contain;
-    }
 
-    .container .activity-time {
-        text-align: center;
-        width: 4.17rem;
-        height: 0.51rem;
-        line-height: 0.51rem;
-        background: rgba(60, 0, 122, 1);
-        border-radius: 0.25rem;
 
-        margin-top: 0.63rem;
-        font-size: 0.25rem;
-        font-weight: 300;
-        color: rgba(253, 250, 255, 1);
-    }
 
     .container .activity-rule {
         text-align: center;
@@ -243,7 +203,7 @@
 
     .container .wx-btn {
         margin-top: 0.57rem;
-        /*margin-bottom: 1.05rem;*/
+        margin-bottom: 1.05rem;
         width: 5.28rem;
         height: 0.90rem;
         line-height: 0.90rem;
@@ -259,20 +219,17 @@
 </style>
 
 <body>
+
     <div class="container">
-        <div class="bonus"></div>
-        <div class="activity-time">
-            活动时间：即日起 - 2018.12.15
-        </div>
-        <div class="activity-rule">
-            <div class="title">奖励规则</div>
+            <div class="activity-rule">
+            <div class="title">小任务大红包</div>
             <ol class="rule">
-                <li>奖励要求：活动期间，收徒>15人，且每个徒弟贡献超过5万金币，即可在收徒10元奖励基础上，额外获得3元现金/人。</li>
-                <li>奖金发放方式：活动结束后3日内，请直接联系客服微信领取现金奖励。</li>
-                <li>若被发现有作弊行为，平台有权取消奖励。</li>
+                <li>加客服微信：shuo0168</li>
+                <li>发送“任务”领取小任务</li>
+                <li>完成后即可得3000~10000金币</li>
             </ol>
         </div>
-        <div class="wx-btn" id="copyCode" data-clipboard-action="copy" data-clipboard-target="span">复制客服微信:<span id="code">better0168</span></div>
+        <div class="wx-btn" id="copyCode" data-clipboard-action="copy" data-clipboard-target="span">点击复制微信:<span id="code">shuo0168</span></div>
     </div>
 
     <script>
@@ -329,7 +286,10 @@
                 window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.weixin.home);
             }
         })
-    </script>
+	</script>
+	<div style="display:none"> 
+	<script src="https://s96.cnzz.com/z_stat.php?id=1275554278&web_id=1275554278" language="JavaScript"></script>
+	</div>
 </body>
 
 </html>
