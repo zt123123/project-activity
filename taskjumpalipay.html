@@ -232,7 +232,10 @@
 				<li>选择【天天领红包】，最高可领99元！</li>
             </ol>
         </div>
-        <div class="wx-btn" id="copyCode" data-clipboard-action="copy" data-clipboard-target="span">点击复制搜索码:<span id="code">4210100</span></div>
+        <div class="wx-btn" id="iosBtn" style="display: none;">
+        	点击复制搜索码:4210100
+        </div>
+        <div class="wx-btn" id="copyCode" style="display: none;" data-clipboard-action="copy" data-clipboard-target="span">点击复制搜索码:<span id="code">4210100</span></div>
     </div>
 
     <script>
@@ -269,6 +272,7 @@
         var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
         var copyCode=document.getElementById('copyCode');
+        var iosBtn=document.getElementById('iosBtn');
         var code=document.getElementById('code');
         var jumpUrl={
             alipay:{
@@ -281,12 +285,21 @@
             }
         }
 
-        copyCode.addEventListener("click",function(){
-            var flag=window.webkit && window.webkit.messageHandlers
-            if(isiOS&&flag){
-                console.log(code.innerText);
-                window.webkit.messageHandlers.copyText && window.webkit.messageHandlers.copyText.postMessage(code.innerText);
-                window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.alipay.home);
+		if(isiOS){
+			iosBtn.style.display="block";
+		}else{
+			copyCode.style.display="block";
+		}
+        iosBtn.addEventListener("click",function(){
+            var flag=window.webkit && window.webkit.messageHandlers;
+            try{
+            	if(isiOS){
+            	    console.log(code.innerText);
+            	    flag&&window.webkit.messageHandlers.copyText && window.webkit.messageHandlers.copyText.postMessage(code.innerText);
+            	    flag&&window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.alipay.home);
+            	}
+            }catch(err){
+                alert(JSON.stringify(err));
             }
         })
 

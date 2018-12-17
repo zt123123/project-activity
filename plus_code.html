@@ -130,11 +130,11 @@
         border-radius: 0;
     }
     body {
-        overflow: hidden;
+        overflow-x: hidden;
         font-size: 14px;
         margin: 0;
         padding: 0;
-        background: #ca47e8 url("./img/bj2.png") left top no-repeat;
+        background: #831dec url("./img/bj2.png") left top no-repeat;
         background-size: 100%;
     }
 
@@ -146,7 +146,8 @@
     }
 
     .container {
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
 
     .container div {
@@ -243,7 +244,7 @@
 
     .container .wx-btn {
         margin-top: 0.57rem;
-        /*margin-bottom: 1.05rem;*/
+        margin-bottom: 1.05rem;
         width: 5.28rem;
         height: 0.90rem;
         line-height: 0.90rem;
@@ -272,7 +273,10 @@
                 <li>若被发现有作弊行为，平台有权取消奖励。</li>
             </ol>
         </div>
-        <div class="wx-btn" id="copyCode" data-clipboard-action="copy" data-clipboard-target="span">复制客服微信:<span id="code">better0168</span></div>
+        <div class="wx-btn" style="display: none;" id="iosBtn">
+            复制客服微信:shuo0168
+        </div>
+        <div class="wx-btn" style="display: none;" id="copyCode" data-clipboard-action="copy" data-clipboard-target="span">复制客服微信:<span id="code">shuo0168</span></div>
     </div>
 
     <script>
@@ -309,6 +313,7 @@
         var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
         var copyCode=document.getElementById('copyCode');
+        var iosBtn=document.getElementById('iosBtn');
         var code=document.getElementById('code');
         var jumpUrl={
             alipay:{
@@ -320,13 +325,22 @@
                 home:"weixin://"
             }
         }
-
-        copyCode.addEventListener("click",function(){
-            var flag=window.webkit && window.webkit.messageHandlers
-            if(isiOS&&flag){
-                console.log(code.innerText);
-                window.webkit.messageHandlers.copyText && window.webkit.messageHandlers.copyText.postMessage(code.innerText);
-                window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.weixin.home);
+        if(isiOS){
+            iosBtn.style.display="block";
+        }else{
+            copyCode.style.display="block";
+        }
+        iosBtn.addEventListener("click",function(){
+            var flag=window.webkit && window.webkit.messageHandlers;
+            try{
+                if(isiOS){
+                    flag&&window.webkit.messageHandlers.copyText && window.webkit.messageHandlers.copyText.postMessage(code.innerText);
+                    flag&&window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.weixin.home);
+                }else{
+                    alert("没有调用到IOS方法");
+                }
+            }catch(err){
+                alert(JSON.stringify(err));
             }
         })
     </script>

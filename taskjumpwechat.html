@@ -229,7 +229,10 @@
                 <li>完成后即可得3000~10000金币</li>
             </ol>
         </div>
-        <div class="wx-btn" id="copyCode" data-clipboard-action="copy" data-clipboard-target="span">点击复制微信:<span id="code">shuo0168</span></div>
+        <div class="wx-btn" style="display: none;" id="iosBtn">
+            点击复制微信:shuo0168
+        </div>
+        <div class="wx-btn" id="copyCode" style="display: none;"  data-clipboard-action="copy" data-clipboard-target="span">点击复制微信:<span id="code">shuo0168</span></div>
     </div>
 
     <script>
@@ -277,15 +280,24 @@
                 home:"weixin://"
             }
         }
-
-        copyCode.addEventListener("click",function(){
-            var flag=window.webkit && window.webkit.messageHandlers
-            if(isiOS&&flag){
-                console.log(code.innerText);
-                window.webkit.messageHandlers.copyText && window.webkit.messageHandlers.copyText.postMessage(code.innerText);
-                window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.weixin.home);
+        if(isiOS){
+            iosBtn.style.display="block";
+        }else{
+            copyCode.style.display="block";
+        }
+        iosBtn.addEventListener("click",function(){
+            var flag=window.webkit && window.webkit.messageHandlers;
+            try{
+                if(isiOS){
+                    console.log(code.innerText);
+                    window.webkit.messageHandlers.copyText && window.webkit.messageHandlers.copyText.postMessage(code.innerText);
+                    window.webkit.messageHandlers.jump && window.webkit.messageHandlers.jump.postMessage(jumpUrl.weixin.home);
+                }
+            }catch(err){
+                alert(JSON.stringify(err));
             }
         })
+
 	</script>
 	<div style="display:none"> 
 	<script src="https://s96.cnzz.com/z_stat.php?id=1275554278&web_id=1275554278" language="JavaScript"></script>
